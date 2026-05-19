@@ -12,6 +12,7 @@ struct DiscoveredBLEDevice: Identifiable, Equatable {
     let rssi: Int
 }
 
+@MainActor
 final class DunenBLEManager: NSObject, ObservableObject {
     @Published var connectionStatus = "Bluetooth not ready"
     @Published var discoveredDevices: [DiscoveredBLEDevice] = []
@@ -86,7 +87,8 @@ final class DunenBLEManager: NSObject, ObservableObject {
         }
     }
 
-    func startScan() {
+  @MainActor
+func startScan() {
         setDemoMode(false)
         guard central.state == .poweredOn else {
             connectionStatus = "Bluetooth is not powered on"
@@ -413,7 +415,8 @@ final class DunenBLEManager: NSObject, ObservableObject {
         UserDefaults.standard.set(data, forKey: "diagnosticEvents")
     }
 
-    private func updateLiveActivityIfNeeded() {
+   @MainActor
+private func updateLiveActivityIfNeeded() {
         guard settings?.liveActivityEnabled == true else {
             if #available(iOS 16.1, *) {
                 LiveActivityManager.shared.end()
@@ -476,7 +479,8 @@ extension DunenBLEManager: CBCentralManagerDelegate {
         rememberDevice(id: device.id, name: device.name, rssi: device.rssi)
     }
 
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+   @MainActor
+func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         isConnected = true
         isDemoMode = false
         connectedName = peripheral.name ?? "DUNEN"
