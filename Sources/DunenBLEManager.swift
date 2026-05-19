@@ -27,6 +27,7 @@ final class DunenBLEManager: NSObject, ObservableObject {
     @Published var demoThrottle: Double = 0.55
     @Published var demoBrake: Double = 0.0
     @Published var demoSelectedMode: RideMode = .xc
+    @Published var demoSpeedKmh: Double = 0
     @Published var rideStats = RideStats()
     @Published var diagnosticEvents: [DiagnosticEvent] = []
 

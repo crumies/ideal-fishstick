@@ -4,6 +4,7 @@ import Foundation
 import ActivityKit
 
 @available(iOS 16.1, *)
+@MainActor
 final class LiveActivityManager {
     static let shared = LiveActivityManager()
     private var activity: Activity<AptumRideAttributes>?

@@ -3,6 +3,7 @@ import AVFoundation
 import AudioToolbox
 import UIKit
 
+@MainActor
 final class SoundManager {
     static let shared = SoundManager()
     private var player: AVAudioPlayer?

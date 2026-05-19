@@ -19,3 +19,10 @@ Fixes:
 - Project target forced to iOS 16.2+ and Swift 6 mode.
 - Widget dependency embedded when widget target is present.
 - Robust IPA workflow.
+
+
+Build Fix 4.6:
+- Added missing demoSpeedKmh to DunenBLEManager.
+- Marked SoundManager as @MainActor for Swift 6.
+- Marked LiveActivityManager as @MainActor for Swift 6.
+- Added SWIFT_STRICT_CONCURRENCY: minimal.
